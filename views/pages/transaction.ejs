@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Welcome To Expense Manager</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/plugins/images/favicon.png">
+    <!-- Custom CSS -->
+   <link href="/css/style.min.css" rel="stylesheet">
+   
+    <!-- font-awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+    <!-- Preloader  -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- Topbar header -->
+       
+
+          <!-- Header Bar -->
+     <%- partial('../pages/partials/nav.ejs')  %>
+
+     <!-- sidebar -->
+     <%- partial('../pages/partials/sidebar.ejs') %>
+
+        <!-- Page wrapper  -->
+        <div class="page-wrapper" style="min-height: 250px;">
+            <!-- Bread crumb and right sidebar toggle -->
+            <div class="page-breadcrumb bg-white">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Accounts</h4>
+                    </div>
+                    <br>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-md-flex">
+                            <ol class="breadcrumb ms-auto">
+                                <li><a href="/account/getallAccount" class="fw-normal"></a></li>
+                            </ol>
+
+                              <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                Add New User
+                            </button>
+                            
+                            <!-- Add New User Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Add Users</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <form class="form-inline" action="/user/adduser?accountId=<%= req.query.accountId %>" method="post">
+                                            <div class="form-group mb-2">
+                                              <label for="staticEmail2" class="sr-only">Email</label>
+                                              <input type="text" name="email" class="form-control" id="staticEmail2" placeholder="enter user email id" required>
+                                            </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                          </div>
+
+                                        </form>
+
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Button trigger modal -->
+                       
+                            <button type="button" class="btn btn-primary mx-3" data-toggle="modal" data-target="#exampleModal">
+                                View Added User
+                            </button>
+                        
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">List of Users</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table no-wrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-top-0">#</th>
+                                                        <th class="border-top-0">User Email Id</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% for(let i=0 ; i < users.length ; i++) { %>
+                                                        <tr>
+                                                            <td><%= i + 1  %></td>
+                                                            <td><%= users[i] %></td>
+                                                            <form action="/user/deleteuser/<%= req.query.accountId %>/<%= i %>" method="post">
+                                                                <td><button class="btn btn-danger" type="submit">Delete</button></td>
+                                                            </form>
+                                                        </tr>
+                                                    <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- End Bread crumb and right sidebar toggle -->
+           
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box d-flex justify-content-between">
+                            <h3 class=" box-title">All Transactions</h3>
+                            
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenters">
+                                Add Transaction
+                            </button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenters" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Add Transaction</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+
+                                    <form method="post" action="/transaction/addtransaction/<%= req.query.accountId %>">
+                                    <div class="modal-body">
+                                        
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Select Transaction Type</label>
+                                            <select name="transactionType" class="form-control border-2" id="exampleFormControlSelect1" aria-placeholder="Select Account Type">
+                                              <option value="Expense">Expense</option>
+                                              <option value="Income">Income</option>
+                                              <option value="Transfer">Transfer</option>
+                                            </select>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="transactionAmount">Transaction Amount</label>
+                                            <input type="number" class="form-control" name="transactionAmount" id="transactionAmount" placeholder="Enter Transaction Amount" required>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="transactionDescription">Transaction Description</label>
+                                            <input type="text" class="form-control" name="transactionDescription" id="transactionDescription" placeholder="Enter Transaction Description" required>
+                                          </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% flash.get('success').forEach(function (message) { %>
+                            <div style="color:green;" id="message" onload="setTimeout()">
+                              <div class="alert alert-success h6" style="color: black;" role="alert">
+                                <%= message %>
+                              </div>
+                              
+                            </div>
+                          <% }) %>
+
+                        <% flash.get('successdelete').forEach(function (message) { %>
+                            <div style="color:green;" id="message" onload="setTimeout()">
+                              <div class="alert alert-success h6" style="color: black;" role="alert">
+                                <%= message %>
+                              </div>
+                              
+                            </div>
+                          <% }) %>
+
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                <div class="white-box">
+                                    <div class="d-md-flex mb-3">
+                                        <h3 class="box-title mb-0">Recent Transaction</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table no-wrap">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-top-0">#</th>
+                                                    <th class="border-top-0">Transaction By</th>
+                                                    <th class="border-top-0">Transaction Type</th>
+                                                    <th class="border-top-0">Transaction Amount</th>
+                                                    <th class="border-top-0">Transaction Description</th>
+                                                    <th class="border-top-0">Transaction Time</th>
+                                                    <th class="border-top-0">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if (typeof transaction == 'undefined'){%>
+                                                    <div></div>
+                                                <% }else{ %>
+                                                <% for(let i=0 ; i < transaction.length ; i++) { %>
+                                                <tr>
+                                                    <td><%= i + 1  %></td>
+                                                    <td class="txt-oflo"><%= transaction[i].transactionuserName %></td>
+                                                    <td><%= transaction[i].transactionType %></td>
+                                                   
+                                                    <% if(transaction[i].transactionType == 'Income') { %>
+                                                    <td><span class="text-success"><i class="fa fa-plus"></i>  <%= transaction[i].transactionAmount %></span></td>
+                                                    <% } %>
+                                                    <% if(transaction[i].transactionType == 'Expense') { %>
+                                                        <td><span class="text-danger"><i class="fa fa-minus"></i>  <%= transaction[i].transactionAmount %></span></td>
+                                                    <% } %>
+                                                    <% if(transaction[i].transactionType == 'Transfer') { %>
+                                                        <td><span class="text-info"><i class="fa fa-exchange" aria-hidden="true"></i>  <%= transaction[i].transactionAmount %></span></td>
+                                                    <% } %>
+                                                    <td><%= transaction[i].transactionDescription %></td>
+                                                    <% const date = new Date(transaction[i].createdAt) %>
+                                                    <td><%= date.getDate()%>/<%= date.getMonth()+1 %>/<%= date.getFullYear() %>, <%= date.getHours() %>:<%= date.getMinutes() %></td>
+                                                    
+                                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= transaction[i].id %>" data-id="<%= transaction[i].id %>">Edit</button></td>
+                                                    <td>
+                                                        <form action="/transaction/deleteTransaction/<%= transaction[i].id %>/<%= req.query.accountId %>" method="post">
+                                                           <button type="button" class="dltbtn btn text-white" style="background-color: rgb(233, 105, 105);">Delete</button>
+                                                        </form>
+                                                    </td>   
+                                                </tr>
+                                                <% } %>
+                                                <!-- <% } %> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <% for(let i=0 ; i < transaction.length ; i++) { %>
+                        <div class="modal fade" id="<%= transaction[i].id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Transaction</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <form action="/transaction/updateTransaction/<%= transaction[i].id %>/<%= req.query.accountId %>" method="post">
+                                  <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Transaction Type</label>
+                                        <select name="transactionType" class="form-control border-2" id="exampleFormControlSelect1">
+                                        <option selected value="<%= transaction[i].transactionType %>"><%= transaction[i].transactionType %></option>
+                                          <option value="Expense">Expense</option>
+                                          <option value="Income">Income</option>
+                                          <option value="Transfer">Transfer</option>
+                                        </select>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="transactionAmount">Transaction Amount</label>
+                                        <input type="number" class="form-control" name="transactionAmount" value="<%= transaction[i].transactionAmount %>" id="transactionAmount" placeholder="Enter Transaction Amount" required>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="transactionDescription">Transaction Description</label>
+                                        <input type="text" class="form-control" name="transactionDescription" value="<%= transaction[i].transactionDescription %>" id="transactionDescription" placeholder="Enter Transaction Description" required>
+                                      </div>
+                                  </div>
+                            
+                                
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+           
+            
+         
+             <!-- footer -->
+             <%- partial('../pages/partials/footer.ejs') %>
+
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+
+<script>
+
+        setTimeout(function(){
+          document.getElementById('message').style.display = "none"
+        }, 2000);
+        
+         $(document).ready(function() {
+             $('.dltbtn').on('click' , () => {
+              console.log('on click');
+              const result = confirm('Are you sure to delete this Transaction!!!');
+              if (result == true) {
+                $('.dltbtn').attr("type", "submit");
+              }
+                
+             })
+         })
+        
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app-style-switcher.js"></script>
+    <!--Wave Effects -->
+    <script src="/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/js/custom.js"></script>
+</body>
+
+</html>
