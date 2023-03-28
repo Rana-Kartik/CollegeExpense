@@ -11,16 +11,17 @@
 module.exports.policies = {
 
   UserController: {
-    '*': 'isAuthenticated',
+    '*': 'isLoggedin',
     login: true,
     signUp: true,
-    verification : true
+    verification : true,
+    forgotpassword :  true,
   },
   AccountController: {
-    '*': 'isAuthenticated'
+    '*': 'isLoggedin'
   },
   TransactionController : {
-    '*': 'isAuthenticated'
+    '*': 'isLoggedin'
   }
 
 };

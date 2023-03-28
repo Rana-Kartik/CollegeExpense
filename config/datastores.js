@@ -18,9 +18,6 @@ module.exports.datastores = {
   default: {
 
       adapter: 'sails-mongo',
-      // url: 'mongodb://parimalta:002fAR367LnXiXRNGYyX6y0X@15.206.7.200:28017/parimalta?authSource=admin',
-      url: 'mongodb+srv://root:root@expense-manager.gu7gxdk.mongodb.net/expense',
-      // url : `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@15.206.7.200:28017/parimalta?authSource=admin`,
-      // url:  'mongodb+srv://root:root@expense-manager.ehogspv.mongodb.net/expense'
+      url: 'mongodb://ranaka:eKc3b9iA4Iid0WiA7GxxigYK@15.206.7.200:28017/ranaka?authSource=admin&readPreference=primary&ssl=false',
   },
 };

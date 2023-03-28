@@ -26,8 +26,8 @@ module.exports = {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'parimaltank132@gmail.com',
-              pass: 'qorlqlshjnfdleoy'
+                user: 'ranakartik461@gmail.com',
+                pass: 'aduz aypc piie kqkt'
             }
           });
 
@@ -36,7 +36,7 @@ module.exports = {
           
           // Invite the New User Using Mail
           const mailOptions = {
-            from: 'parimaltank132@gmail.com',
+            from: 'ranakartik461@gmail.com',
             to:    email,
             subject: 'Welcome To Expense Manager',
             html: "<h2 style='font-weight:bold;'>"+ `${userDetails.userName}` + '</h2>' + '<h3>like to Invite you to keep track of the expense together via the Expense Manager and Collabrate With them.' + '</h3>' + "<br>" + '<h3>' + "Access Your Group Account Now."+ '</h3>' + "<br>" + "<h4>"+ "Thank & Regards,"+ '<br>' + "Team Expense Manager" + '</h4>' // html body"
@@ -156,6 +156,7 @@ module.exports = {
             await Account.find({createrId : userId}).then( async result => {
 
                     const allAccount = await Account.find({});
+                    console.log("all account", allAccount)
                     const accounts = [];
 
                     for(let i=0 ; i< allAccount.length ; i++){
@@ -177,6 +178,7 @@ module.exports = {
                     res.view('pages/dashboard' , { addeduserAccount : addedUserAccount , accounts: result});
 
                 }).catch(err => {
+                    console.log(err)
                     res.status(505).json({
                         message : "Erron in Get Allaccount"
                     })

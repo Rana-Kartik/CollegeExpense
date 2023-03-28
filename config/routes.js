@@ -5,11 +5,13 @@ module.exports.routes = {
   
   // User Login , Signup , Log out
   '/signup': {view: 'pages/signup'},
+  'get /forgotpassword' : {view : 'pages/ForgotPassword'},
   'POST /user/signup' : 'UserController.signUp',
   'POST /user/login' : 'UserController.login',
   'GET /user/logout' : 'UserController.logout',
   'GET /user/profile' : 'UserController.getuserProfileData',
   'POST /user/updateprofile' : 'UserController.updateuserProfile',
+  'POST /forgotpassword' : 'UserController.forgotpassword',
 
   // Email Verifiaction
   '/conformation' : { view : 'pages/verification'},
