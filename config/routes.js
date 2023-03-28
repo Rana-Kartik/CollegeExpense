@@ -6,6 +6,7 @@ module.exports.routes = {
   // User Login , Signup , Log out
   '/signup': {view: 'pages/signup'},
   'get /forgotpassword' : {view : 'pages/ForgotPassword'},
+  'get /admin' : {view : 'pages/Admin'},
   'POST /user/signup' : 'UserController.signUp',
   'POST /user/login' : 'UserController.login',
   'GET /user/logout' : 'UserController.logout',

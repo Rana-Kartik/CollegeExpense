@@ -106,7 +106,8 @@ module.exports = {
                     })
                 }
                 else if(user.email === adminemail  && user.password === adminpass){
-                    console.log("Admin can access your dashboard");
+                    console.log("Admin can access your dashboard")
+                    res.redirect('/admin')
                 } else {
                     console.log("compare");
                     // chech entered userName exist into a database or not.
