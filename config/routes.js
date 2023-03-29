@@ -6,12 +6,14 @@ module.exports.routes = {
   // User Login , Signup , Log out
   '/signup': {view: 'pages/signup'},
   'get /forgotpassword' : {view : 'pages/ForgotPassword'},
+  'get /changepassword' : {view : 'pages/changepassword'},
   'get /admin' : {view : 'pages/Admin'},
   'POST /user/signup' : 'UserController.signUp',
   'POST /user/login' : 'UserController.login',
   'GET /user/logout' : 'UserController.logout',
   'GET /user/profile' : 'UserController.getuserProfileData',
   'POST /user/updateprofile' : 'UserController.updateuserProfile',
+  'POST /changepassword' : 'UserController.changepassword',
   'POST /forgotpassword' : 'UserController.forgotpassword',
 
   // Email Verifiaction
@@ -37,6 +39,8 @@ module.exports.routes = {
   // Get Transaction Details By ID
   'GET /transaction/getTransaction/:id' : 'TransactionController.getTransactionById',
 
+  'POST /transaction/search' : 'TransactionController.search',
+
 
   // Update the Transaction By Id
   'POST /transaction/updateTransaction/:transactionId/:accountId' : 'TransactionController.updateTransaction',
@@ -55,6 +59,8 @@ module.exports.routes = {
 
   // Get all Account
   'GET /account/getallAccount' : 'AccountController.getallAccount',
+
+  
 
   // Get account by Id
   'GET /account/getAccountByID/:id' : 'AccountController.getAccountByID',

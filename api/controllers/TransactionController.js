@@ -107,6 +107,19 @@ module.exports = {
         })
     })
 
+  },
+
+  search: async function(req,res){
+        const searchtransaction = req.body.transactionType
+        console.log("transaction select",searchtransaction)
+        Transaction.find({transactionType : searchtransaction})
+        .then(data => {
+            console.log("transactiontype" , data);
+            res.status(200).json({
+                statusCode : 200,
+                data : data
+            })
+        })
   }
 
 };

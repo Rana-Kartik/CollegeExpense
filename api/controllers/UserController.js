@@ -141,9 +141,8 @@ module.exports = {
             })
             .catch(err => {
                 console.log(err);
-                return res.status(400).json({
-                    message: 'Auth Failed'
-                })
+                req.addFlash('error', 'Email Not Found!!!!');
+                res.redirect('/');
             })
 
     },
@@ -249,9 +248,54 @@ module.exports = {
                 }  
             })
            .catch(error => {
+            console.log(error);
                     req.addFlash('error', 'Your Email is not found');
-                    res.redirect('/')
+                    res.redirect('/') 
+                   
            })
     },
+
+    changepassword : async function(req, res){
+        const userName = req.body.userName
+        await User.find({userName : userName})
+        .then(data => {
+            console.log(data);
+            const oldpassword = req.body.oldpassword
+            const newpassword = req.body.newpassword
+            const confirmpassword = req.body.confirmpassword
+
+            bcrypt.compare(oldpassword, data.password, 10, (err, result) => {
+                if(err){
+                    console.log("old password does not match");
+                }
+                else
+                {
+                    req.addFlash('success', 'Your Password are successfully change');
+                    // if (newpassword === confirmpassword) {
+                    //     bcrypt.hash(confirmpassword, 10, async (err, data) => {
+    
+                    //         if (err) {
+                    //             console.log("error");
+                    //         }
+                    //         else {
+                    //             User.updateOne({ id: id }, { password: data })
+                    //                 .then(dd => {
+                    //                     console.log("updated data", dd);
+                    //                     req.addFlash('success', 'Your Password are successfully change');
+                    //                     res.redirect('/')
+                    //                 })
+                    //         }
+                    //     })
+                    // }
+                    // else
+                    // {
+                    //     req.addFlash('error', 'Your password does not match');
+                    //     res.redirect('')
+                    // }  
+                }
+            })
+        })
+        
+    }
 };
 

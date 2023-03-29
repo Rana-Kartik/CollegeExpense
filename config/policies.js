@@ -16,6 +16,7 @@ module.exports.policies = {
     signUp: true,
     verification : true,
     forgotpassword :  true,
+    changepassword : true
   },
   AccountController: {
     '*': 'isLoggedin'

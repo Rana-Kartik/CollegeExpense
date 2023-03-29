@@ -161,11 +161,11 @@ module.exports = {
 
                     for(let i=0 ; i< allAccount.length ; i++){
 
-                        for(let j=0 ; j< allAccount[i].users.length ; j++ ){
-                            if(emailId == allAccount[i].users[j]){
-                                accounts.push(allAccount[i].id)
-                            }
-                        }
+                        // for(let j=0 ; j< allAccount[i].users.length ; j++ ){
+                        //     if(emailId == allAccount[i].users[j]){
+                        //         accounts.push(allAccount[i].id)
+                        //     }
+                        // }
                     }
 
                     const addedUserAccount = [];
