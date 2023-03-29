@@ -1,8 +1,8 @@
 
 module.exports = {
-
+  tableName : 'transactionexpense',
   attributes: {
-
+    
     account_Id : {
       type : 'string',
       required : true

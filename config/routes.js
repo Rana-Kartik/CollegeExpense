@@ -39,7 +39,7 @@ module.exports.routes = {
   // Get Transaction Details By ID
   'GET /transaction/getTransaction/:id' : 'TransactionController.getTransactionById',
 
-  'POST /transaction/search' : 'TransactionController.search',
+  'GET /transaction/search' : 'TransactionController.search',
 
 
   // Update the Transaction By Id
