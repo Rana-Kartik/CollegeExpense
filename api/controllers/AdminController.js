@@ -16,5 +16,6 @@ module.exports = {
             res.view('pages/Admin', {data:result})
        })
     }
+    
 };
 

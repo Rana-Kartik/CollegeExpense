@@ -10,6 +10,7 @@ module.exports = async function (req, res, proceed) {
       }
         const decoded = jwt.verify(token, 'secret'); 
         req.userData = decoded;
+        req.id = decoded
         proceed();
       } catch(error){
           return res.redirect('/login');

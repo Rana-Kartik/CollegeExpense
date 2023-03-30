@@ -8,6 +8,8 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
+
+
 module.exports.policies = {
 
   UserController: {
@@ -16,13 +18,17 @@ module.exports.policies = {
     signUp: true,
     verification : true,
     forgotpassword :  true,
-    changepassword : true
+    logout : true
   },
   AccountController: {
     '*': 'isLoggedin'
   },
   TransactionController : {
     '*': 'isLoggedin'
+  },
+
+  AdminController : {
+    'alluseraccount' : true
   }
 
 };
