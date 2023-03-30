@@ -39,7 +39,7 @@ module.exports.routes = {
   // Get Transaction Details By ID
   'GET /transaction/getTransaction/:id' : 'TransactionController.getTransactionById',
 
-  'GET /transaction/search' : 'TransactionController.search',
+  'POST /transaction/search' : 'TransactionController.search',
 
 
   // Update the Transaction By Id
@@ -64,5 +64,7 @@ module.exports.routes = {
 
   // Get account by Id
   'GET /account/getAccountByID/:id' : 'AccountController.getAccountByID',
+
+  'GET /admin/alluseraccount' : 'AdminController.alluseraccount'
 
 };

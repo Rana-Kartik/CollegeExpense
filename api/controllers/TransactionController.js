@@ -110,8 +110,8 @@ module.exports = {
   },
 
   search: async function(req,res){
-         const searchtransaction = "Transfer"
-        // console.log("transaction select",searchtransaction)
+         const searchtransaction = req.body.transactionType
+        console.log("transaction select",searchtransaction)
         Transaction.find({transactionType : searchtransaction})
         .then(data => {
             console.log("transactiontype" , data);

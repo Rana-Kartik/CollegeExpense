@@ -72,17 +72,25 @@
             </div>
             <!-- End Bread crumb and right sidebar toggle -->
 
-
+            
             <!-- Container fluid  -->
             <div class="container-fluid">
-                   <%- include('../pages/AdminHome.ejs') %>
+                <div class="row ">
+                  <h3>User List</h3>
+                <% data.forEach(function(tt){ %>
+                <div class="col-lg-4 col-md-12">
+                  <div class="white-box analytics-info">
+                    <h3 class="box-title">Email : <%= tt.email %></h3>
+                    
+                  </div>
+                </div>
+                <% }) %>
+                  
             </div>
             <!-- End Container fluid  -->
 
             <!-- footer -->
-            <div style="margin-top: 33%;">
-                <%- partial('../pages/partials/footer.ejs') %>
-            </div>
+            
             
         </div>
         <!-- End Page wrapper  -->
